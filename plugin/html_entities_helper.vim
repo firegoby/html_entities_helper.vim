@@ -1,8 +1,8 @@
 " HTML Entities Helper
 " Author: Chris Batchelor (chris at firegoby dot com)
 " License: See UNLICENSE file or http://unlicense.org/
-" Version: 1.0
-" Last Updated: 8 May 2011
+" Version: 1.1
+" Last Updated: 14 October 2011
 " Description: A few handy search and replace functions for quickly dealing
 "              with HTML Entities and their unicode equivalents
 
@@ -14,7 +14,8 @@ let g:loaded_html_entities_helper = 1
 
 " Convert 246 unicode characters to HTML entities (named)
 " Characters NOT replaced: nbsp, shy, zwnj, zwj, lrm, rlm
-" List from http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references
+" List from: -
+" http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references
 " TODO: make work on a selection
 function! g:encode_unicode()
   " Preparation: save last search, and cursor position.
@@ -180,9 +181,9 @@ function! g:encode_unicode()
   %s/ϑ/\&thetasym;/egi
   %s/ϒ/\&upsih;/egi
   %s/ϖ/\&piv;/egi
-  %s/U/\&ensp;/egi
-  %s/U/\&emsp;/egi
-  %s/U/\&thinsp;/egi
+  "%s/ /\&ensp;/egi
+  "%s/ /\&emsp;/egi
+  "%s/ /\&thinsp;/egi
   %s/–/\&ndash;/egi
   %s/—/\&mdash;/egi
   %s/‘/\&lsquo;/egi
@@ -275,7 +276,8 @@ endfunction
 
 " Replaces all 252 named HTML entities with their repective unicode code point
 " because XML doesn't have named entities other than amp, quot, apos, lt, gt
-" List from http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references
+" List from: -
+" http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references
 " TODO: make work on a selection
 function! g:named_to_codepoint()
   " Preparation: save last search, and cursor position.
