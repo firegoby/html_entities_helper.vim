@@ -8,6 +8,7 @@ A couple of handy search-and-replace functions for Vim that: -
 
 Changelog
 ---------
+* 1.1 - Support for operating over ranges (thanks to [Nahuel Soldevilla](https://github.com/solde9))
 * 1.0 - Initial Version
 
 Installation
@@ -32,6 +33,3 @@ Before: `&copy; Copyright 2011 &middot; All Rights Reserved.`
 
 After: `&#169; Copyright 2011 &#183; All Rights Reserved.`
 
-Notes
------
-Currently conversions are across the entire current Vim buffer, future version will work on a visual selection but if you need to work on a sub section of a buffer in the meantime copy it to a new buffer, convert and paster back in. 
