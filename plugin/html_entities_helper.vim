@@ -1,8 +1,8 @@
 " HTML Entities Helper
-" Author: Chris Batchelor (chris at firegoby dot com)
+" Author: Chris Batchelor (github.com/firegoby), Nahuel Soldevilla (github.com/solde9)
 " License: See UNLICENSE file or http://unlicense.org/
 " Version: 1.1
-" Last Updated: 14 October 2011
+" Last Updated: 29 September 2015
 " Description: A few handy search and replace functions for quickly dealing
 "              with HTML Entities and their unicode equivalents
 
@@ -276,7 +276,7 @@ let g:html_entities_helper_array = [
 " Characters NOT replaced: nbsp, emsp, ensp, shy, zwnj, zwj, lrm, rlm
 " List from: -
 " http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references
-function! g:encode_unicode() range
+function! s:encode_unicode() range
   " Preparation: save last search, and cursor position.
   let _s=@/
   let l = line(".")
@@ -285,7 +285,7 @@ function! g:encode_unicode() range
       if i[0] == " " && g:html_entities_skip_spaces == 1
           continue
       endif
-      execute a:firstline.",".a:lastline."s/".i[0]."/\\".i[1]."/egi" 
+      execute a:firstline.",".a:lastline."s/".i[0]."/\\".i[1]."/egi"
   endfor
   " Clean up: restore previous search history, and cursor position
   let @/=_s
@@ -296,13 +296,13 @@ endfunction
 " because XML doesn't have named entities other than amp, quot, apos, lt, gt
 " List from: -
 " http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references
-function! g:named_to_codepoint()
+function! s:named_to_codepoint()
   " Preparation: save last search, and cursor position.
   let _s=@/
   let l = line(".")
   let c = col(".")
   for i in g:html_entities_helper_array
-      execute a:firstline.",".a:lastline."s/".i[1]."/\\".i[2]."/egi" 
+      execute a:firstline.",".a:lastline."s/".i[1]."/\\".i[2]."/egi"
   endfor
   " Clean up: restore previous search history, and cursor position
   let @/=_s
@@ -310,6 +310,6 @@ function! g:named_to_codepoint()
 endfunction
 
 " Encode unicode characters in current buffer to HTML Entities
-noremap <silent> <leader>He :call g:encode_unicode()<CR>
+noremap <silent> <leader>He :call s:encode_unicode()<CR>
 " Convert all named HTML Entities in current buffer to numerical code point
-noremap <silent> <leader>Hn :call g:named_to_codepoint()<CR>
+noremap <silent> <leader>Hn :call s:named_to_codepoint()<CR>
