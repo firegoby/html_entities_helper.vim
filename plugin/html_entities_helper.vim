@@ -318,7 +318,7 @@ function! s:Named_to_character() range
   let l = line(".")
   let c = col(".")
   for i in g:html_entities_helper_array
-      execute a:firstline.",".a:lastline."s/".i[2]."/\\".i[1]."/egi"
+      execute a:firstline.",".a:lastline."s/".i[2]."/".i[0]."/egi"
   endfor
   " Clean up: restore previous search history, and cursor position
   let @/=_s
