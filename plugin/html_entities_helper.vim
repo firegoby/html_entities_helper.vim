@@ -1,8 +1,8 @@
 " HTML Entities Helper
-" Author: Chris Batchelor (github.com/firegoby), Nahuel Soldevilla (github.com/solde9)
+" Author: Chris Batchelor (github.com/firegoby), Nahuel Soldevilla (github.com/solde9), Jay (github.com/jsit)
 " License: See UNLICENSE file or http://unlicense.org/
-" Version: 1.1
-" Last Updated: 29 September 2015
+" Version: 1.2
+" Last Updated: 9 January 2017
 " Description: A few handy search and replace functions for quickly dealing
 "              with HTML Entities and their unicode equivalents
 
@@ -276,7 +276,7 @@ let g:html_entities_helper_array = [
 " Characters NOT replaced: nbsp, emsp, ensp, shy, zwnj, zwj, lrm, rlm
 " List from: -
 " http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references
-function! s:encode_unicode() range
+function! s:Encode_unicode() range
   " Preparation: save last search, and cursor position.
   let _s=@/
   let l = line(".")
@@ -296,7 +296,7 @@ endfunction
 " because XML doesn't have named entities other than amp, quot, apos, lt, gt
 " List from: -
 " http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references
-function! s:named_to_codepoint()
+function! s:Named_to_codepoint()
   " Preparation: save last search, and cursor position.
   let _s=@/
   let l = line(".")
@@ -312,7 +312,7 @@ endfunction
 " Replaces all named HTML entities with their repective unicode characters
 " List from: -
 " http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references
-function! s:named_to_character() range
+function! s:Named_to_character() range
   " Preparation: save last search, and cursor position.
   let _s=@/
   let l = line(".")
@@ -326,8 +326,8 @@ function! s:named_to_character() range
 endfunction
 
 " Encode unicode characters in current buffer to HTML Entities
-noremap <silent> <leader>He :call s:encode_unicode()<CR>
+noremap <silent> <leader>He :call <SID>Encode_unicode()<CR>
 " Convert all named HTML Entities in current buffer to numerical code point
-noremap <silent> <leader>Hn :call s:named_to_codepoint()<CR>
+noremap <silent> <leader>Hn :call <SID>Named_to_codepoint()<CR>
 " Replace all named HTML entities with their repective unicode characters
-noremap <silent> <leader>Hd :call s:named_to_character()<CR>
+noremap <silent> <leader>Hd :call <SID>Named_to_character()<CR>
