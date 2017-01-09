@@ -312,13 +312,13 @@ endfunction
 " Replaces all named HTML entities with their repective unicode characters
 " List from: -
 " http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references
-function! s:Named_to_character() range
+function! s:Any_to_character() range
   " Preparation: save last search, and cursor position.
   let _s=@/
   let l = line(".")
   let c = col(".")
   for i in g:html_entities_helper_array
-      execute a:firstline.",".a:lastline."s/".i[2]."/\\".i[1]."/egi"
+      execute a:firstline.",".a:lastline."s/\\(".i[2]."\\|".i[1]."\\)/".i[0]."/egi"
   endfor
   " Clean up: restore previous search history, and cursor position
   let @/=_s
@@ -330,4 +330,4 @@ noremap <silent> <leader>He :call <SID>Encode_unicode()<CR>
 " Convert all named HTML Entities in current buffer to numerical code point
 noremap <silent> <leader>Hn :call <SID>Named_to_codepoint()<CR>
 " Replace all named HTML entities with their repective unicode characters
-noremap <silent> <leader>Hd :call <SID>Named_to_character()<CR>
+noremap <silent> <leader>Hd :call <SID>Any_to_character()<CR>
