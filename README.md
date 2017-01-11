@@ -5,6 +5,7 @@ A couple of handy search-and-replace functions for Vim that: -
 
 * convert unicode characters to their repspective named HTML entities
 * convert named HTML entities to their unicode codepoint equivalents
+* convert named HTML entities and unicode codepoints to their unicode character equivalents
 
 Changelog
 ---------
@@ -32,4 +33,9 @@ After: `&copy; Copyright 2011 &middot; All Rights Reserved.`
 Before: `&copy; Copyright 2011 &middot; All Rights Reserved.`
 
 After: `&#169; Copyright 2011 &#183; All Rights Reserved.`
+
+### &lt;leader&gt;Hd
+Before: `&#169; Copyright 2011 &middot; All Rights Reserved.`
+
+After: `© Copyright 2011 · All Rights Reserved.`
 
